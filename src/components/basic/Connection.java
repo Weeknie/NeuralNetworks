@@ -26,6 +26,10 @@ public class Connection
      */
     protected double weight = 0;
     
+    /**
+     * 
+     * @param weight The initial weight of the connection
+     */
     public Connection(double weight)
     {
         this.weight = weight;

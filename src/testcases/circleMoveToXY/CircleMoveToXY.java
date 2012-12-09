@@ -44,7 +44,7 @@ public class CircleMoveToXY implements TestCase
         
         for(int i = 0; i <= 100; i++)
         {
-            CircleEntity circleEntity = new CircleEntity(400, 400, 5, new SigmoidNetwork(2, 2, 1, 6, 2), renderer);
+            CircleEntity circleEntity = new CircleEntity(400, 400, 5, new SigmoidNetwork(2, 2, 1, 6, 1, 10), renderer);
             circleEntities.add(circleEntity);
             renderer.addDrawable(circleEntity.getCircle());
         }

@@ -42,6 +42,7 @@ public class Line implements Drawable
         this.xEnd = xEnd;
         this.yStart = yStart;
         this.yEnd = yEnd;
+        this.color = Color.black;
     }
     
     public Line(int xStart, int yStart, int xEnd, int yEnd, Color color)
@@ -64,6 +65,10 @@ public class Line implements Drawable
         graphics.drawLine(xStart, yStart, xEnd, yEnd);
     }
     
+    /**
+     * Sets the color of this line
+     * @param color The new color
+     */
     public void setColor(Color color)
     {
         this.color = color;

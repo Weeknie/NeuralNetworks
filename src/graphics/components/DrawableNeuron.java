@@ -22,12 +22,21 @@ public class DrawableNeuron implements Drawable
      */
     Circle circle;
     
+    /**
+     * 
+     * @param neuron The neuron that this drawable neuron represents
+     * @param circle The circle that represents this drawable neuron
+     */
     public DrawableNeuron(Neuron neuron, Circle circle)
     {
         this.neuron = neuron;
         this.circle = circle;
     }
     
+    /**
+     * Draws the neuron
+     * @param graphics The graphics object to use while drawing
+     */
     @Override
     public void draw(Graphics graphics)
     {

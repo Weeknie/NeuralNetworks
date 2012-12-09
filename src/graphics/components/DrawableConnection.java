@@ -23,12 +23,21 @@ public class DrawableConnection implements Drawable
      */
     Line line;
     
+    /**
+     * 
+     * @param connection The connection that this drawable connection represents
+     * @param line The line that represents this drawable connection
+     */
     public DrawableConnection(Connection connection, Line line)
     {
         this.connection = connection;
         this.line = line;
     }
 
+    /**
+     * Draws the connection
+     * @param graphics The graphics object to use while drawing
+     */
     @Override
     public void draw(Graphics graphics)
     {

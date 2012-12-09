@@ -4,19 +4,32 @@ import components.basic.Connection;
 import components.basic.Neuron;
 
 /**
- *
+ * A sigmoid neuron, which output follows a sigmoid curve.
+ * The used formula is: multFactor / (1 + exp(-activation / compFactor)) - multFactor / 2.
+ * Its output ranges from -multFactor / 2 to multFactor / 2
  * @author Maarten Slenter
  */
 public class SigmoidNeuron extends Neuron
 {
     /**
-     * The compensation factor to use in the power of e
+     * The compensation factor
      */
-    double compensationFactor = 1;
+    double compFactor = 1;
     
-    public SigmoidNeuron(double compensationFactor)
+    /**
+     * The multiplication factor
+     */
+    double multFactor = 1;
+    
+    /**
+     * 
+     * @param compFactor The initial compensation factor for this neuron
+     * @param multFactor The initial multiplication factor for this neuron
+     */
+    public SigmoidNeuron(double compFactor, double multFactor)
     {
-        this.compensationFactor = compensationFactor;
+        this.compFactor = compFactor;
+        this.multFactor = multFactor;
     }
     
     /**
@@ -32,8 +45,7 @@ public class SigmoidNeuron extends Neuron
             totalValue += connection.getOutputValue();
         }
         
-        double max = 10;
-        double outputValue = max/(1 + Math.exp(-totalValue)) - (max/2);
+        double outputValue = multFactor/(1 + Math.exp(-totalValue / compFactor)) - (multFactor/2);
         
         for(Connection connection : outputs)
         {

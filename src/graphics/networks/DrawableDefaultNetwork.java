@@ -23,6 +23,10 @@ public class DrawableDefaultNetwork
         ArrayList<Layer> layers = network.getLayers();
         int maxWidth = 0;
         
+        /**
+         * Calculate the maximum width of the layers.
+         * This will later be used to center all layers that are smaller than the widest one
+         */
         for(Layer layer : layers)
         {
             maxWidth = Math.max(maxWidth, layer.getSize() * 50);
