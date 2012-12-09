@@ -31,6 +31,16 @@ public class CircleMoveToXY implements TestCase
      * The y coordinate the circles should move to
      */
     public static int goalY = 200;
+    
+    /**
+     * The line that represents the x coordinate goal
+     */
+    private Line goalLineX = new Line(goalX, 0, goalX, 1500, Color.green);
+    
+    /**
+     * The line that represents the y coordinate goal
+     */
+    private Line goalLineY = new Line(0, goalY, 1500, goalY, Color.green);
 
     /**
      * Initializes the testcase, instantiating all cricle entities and 
@@ -39,8 +49,8 @@ public class CircleMoveToXY implements TestCase
     @Override
     public void initialize(Renderer renderer)
     {
-        renderer.addDrawable(new Line(200, 0, 200, 1000, Color.green));
-        renderer.addDrawable(new Line(0, 200, 1000, 200, Color.green));
+        renderer.addDrawable(goalLineX);
+        renderer.addDrawable(goalLineY);
         
         for(int i = 0; i <= 100; i++)
         {

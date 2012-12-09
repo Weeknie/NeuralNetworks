@@ -59,7 +59,7 @@ public class CircleEntity
      */
     public void update()
     {
-        network.setInputs(circle.getX() - 200 > 0 ? -1 : 1, circle.getY() - 200 > 0 ? -1 : 1);
+        network.setInputs(circle.getX() - CircleMoveToXY.goalX > 0 ? -1 : 1, circle.getY() - CircleMoveToXY.goalY > 0 ? -1 : 1);
         network.update();
         double[] outputs = network.getOutputs();
         

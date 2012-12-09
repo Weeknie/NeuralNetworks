@@ -47,6 +47,6 @@ public class NeuralNetworks
             {
                 renderer.repaint();
             }
-        }, 0, 1000);
+        }, 0, 40);
     }
 }
