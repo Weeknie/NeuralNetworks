@@ -39,6 +39,8 @@ public class DefaultNetwork extends Network
             Connection connection = new Connection(generateWeight());
             neuron.addInput(connection);
             inputConnections.add(connection);
+            
+            adjustableConnections.add(connection);
         }
         
         ArrayList<Neuron> previousNeurons = inputLayer.getNeurons();
@@ -59,6 +61,8 @@ public class DefaultNetwork extends Network
                     Connection connection = new Connection(generateWeight());
                     previousNeuron.addOutput(connection);
                     neuron.addInput(connection);
+                    
+                    adjustableConnections.add(connection);
                 }
             }
             this.hiddenLayers.add(layer);

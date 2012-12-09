@@ -35,6 +35,11 @@ public abstract class Network
     protected ArrayList<Connection> outputConnections = new ArrayList<>();
     
     /**
+     * The list of connections which can be adjusted during learning
+     */
+    protected ArrayList<Connection> adjustableConnections = new ArrayList<>();
+    
+    /**
      * The random number generator for generating new weights
      */
     private Random random = new Random();
