@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import components.basic.Connection;
 import components.basic.Layer;
+import components.basic.Network;
 import components.basic.Neuron;
 import components.extended.networks.DefaultNetwork;
 import graphics.components.DrawableConnection;
@@ -18,7 +19,7 @@ import main.Renderer;
  */
 public class DrawableDefaultNetwork
 {    
-    public static void drawNetwork(DefaultNetwork network, Renderer renderer)
+    public static void drawNetwork(Network network, Renderer renderer)
     {
         ArrayList<Layer> layers = network.getLayers();
         int maxWidth = 0;

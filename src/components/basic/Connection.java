@@ -39,7 +39,7 @@ public class Connection
      * Sets the source of this connection
      * @param neuron The source neuron
      */
-    void setSource(Neuron neuron)
+    public void setSource(Neuron neuron)
     {
         source = neuron;
     }
@@ -48,7 +48,7 @@ public class Connection
      * Sets the destination of this connection
      * @param neuron The destination neuron
      */
-    void setDestination(Neuron neuron)
+    public void setDestination(Neuron neuron)
     {
         destination = neuron;
     }

@@ -93,6 +93,34 @@ public abstract class Network
     }
     
     /**
+     * 
+     * @return A list with the weights of all adjustable connections in this network
+     */
+    public ArrayList<Double> getWeights()
+    {
+        ArrayList<Double> doubles = new ArrayList<>();
+        
+        for(Connection connection : adjustableConnections)
+        {
+            doubles.add(connection.getWeight());
+        }
+        
+        return doubles;
+    }
+    
+    /**
+     * Sets the weights of the adjustable connections to the corresponding values in the supplied list
+     * @param weights The new list of weights
+     */
+    public void setWeights(ArrayList<Double> weights)
+    {
+        for(int i = 0; i <= adjustableConnections.size() - 1; i++)
+        {
+            adjustableConnections.get(i).setWeight(weights.get(i));
+        }
+    }
+    
+    /**
      * Updates the network, calculating the new outputs
      */
     public void update()

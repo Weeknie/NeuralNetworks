@@ -6,6 +6,7 @@ import components.basic.Network;
 import graphics.entities.Circle;
 import graphics.entities.Line;
 import main.Renderer;
+import testcases.circleMoveToXY.CircleMoveToXY;
 
 /**
  * Represents a test case circle
@@ -13,6 +14,16 @@ import main.Renderer;
  */
 public class CircleEntity 
 {
+    /**
+     * The x start coordinate of this circle entity;
+     */
+    private final int startX;
+    
+    /**
+     * The y start coordinate of this circle entity
+     */
+    private final int startY;
+    
     /**
      * The circle that represents this circle entity
      */
@@ -41,6 +52,8 @@ public class CircleEntity
         circle = new Circle(x, y, radius);
         this.network = network;
         this.renderer = renderer;
+        this.startX = x;
+        this.startY = y;
     }
     
     /**
@@ -50,6 +63,23 @@ public class CircleEntity
     public Circle getCircle()
     {
         return circle;
+    }
+    
+    /**
+     * 
+     * @return The neural network that operates this circle
+     */
+    public Network getNetwork()
+    {
+        return network;
+    }
+    
+    /**
+     * Reset this circle entity to its original position
+     */
+    public void reset()
+    {
+        this.circle.setCoordinates(startX, startY);
     }
     
     /**
@@ -69,6 +99,24 @@ public class CircleEntity
         circle.increaseX(outputs[0]);
         circle.increaseY(outputs[1]);
         
-        renderer.drawOnce(new Line((int) circle.getX(), (int) circle.getY(), (int) oldX, (int) oldY, Color.red));
+        //renderer.drawOnce(new Line((int) circle.getX(), (int) circle.getY(), (int) oldX, (int) oldY, Color.red));
+    }
+    
+    /**
+     * Proxy method for getting the x coordinate of this circle entity
+     * @return The x coordinate of this circle entity
+     */
+    public double getX()
+    {
+        return circle.getX();
+    }
+    
+    /**
+     * Proxy method for getting the y coordinate of this circle entity
+     * @return The y coordinate of this circle entity
+     */
+    public double getY()
+    {
+        return circle.getY();
     }
 }

@@ -88,6 +88,7 @@ public class SigmoidNetwork extends Network
                 Connection connection = new Connection(generateWeight());
                 previousNeuron.addOutput(connection);
                 neuron.addInput(connection);
+                adjustableConnections.add(connection);
             }
             
             Connection connection = new Connection(1);

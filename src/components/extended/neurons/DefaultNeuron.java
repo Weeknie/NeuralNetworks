@@ -29,14 +29,14 @@ public class DefaultNeuron extends Neuron
     @Override
     public void update()
     {
-        double totalValue = 0;
+        double totalActivation = 0;
         
         for(Connection connection : inputs)
         {
-            totalValue += connection.getOutputValue();
+            totalActivation += connection.getOutputValue();
         }
         
-        if(totalValue >= threshold)
+        if(totalActivation >= threshold)
         {
             for(Connection connection : outputs)
             {

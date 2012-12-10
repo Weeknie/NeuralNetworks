@@ -33,6 +33,7 @@ public class NeuralNetworks
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(renderer);
         frame.setVisible(true);
+        
         timer.scheduleAtFixedRate(new TimerTask(){
             @Override
             public void run()
@@ -47,6 +48,6 @@ public class NeuralNetworks
             {
                 renderer.repaint();
             }
-        }, 0, 40);
+        }, 0, 50);
     }
 }

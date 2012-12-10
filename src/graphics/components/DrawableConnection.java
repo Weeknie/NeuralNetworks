@@ -41,7 +41,7 @@ public class DrawableConnection implements Drawable
     @Override
     public void draw(Graphics graphics)
     {
-        line.setColor(connection.getInputValue() != 0 ? Color.red : Color.black);
+        line.setColor(Color.black);
         line.draw(graphics);
     }
 }
