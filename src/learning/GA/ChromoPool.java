@@ -33,6 +33,11 @@ public class ChromoPool<T extends DoublesChromosome>
     public final int chromoLength;
     
     /**
+     * The average fitness of this pool, set at each update
+     */
+    private double avgFitness = 0;
+    
+    /**
      * 
      * @param chromoLength The length of chromosomes in this pool
      */
@@ -87,6 +92,15 @@ public class ChromoPool<T extends DoublesChromosome>
     }
     
     /**
+     * 
+     * @return The average fitness of this chromosome pool
+     */
+    public double getAvgFitness()
+    {
+        return avgFitness;
+    }
+    
+    /**
      * Updates the chromosome pool
      * @return A list with the new chromosomes
      */
@@ -105,7 +119,7 @@ public class ChromoPool<T extends DoublesChromosome>
             totalFitness += chromosome.getFitness();
         }
         
-        System.out.println("Avg fitness: " + totalFitness/chromoPool.size());
+        avgFitness = totalFitness/chromoPool.size();
         
         for(int i = chromoPool.size() / 2; i > 0; i -= 2)
         {            
