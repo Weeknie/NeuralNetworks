@@ -11,7 +11,7 @@ public class Layer
     /**
      * The list of neurons in this layer
      */
-    ArrayList<Neuron> neurons = new ArrayList<>();
+    private ArrayList<Neuron> neurons = new ArrayList<>();
     
     /**
      * Adds a neuron to this layer
