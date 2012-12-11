@@ -6,7 +6,7 @@ import components.basic.Network;
 import graphics.entities.Circle;
 import graphics.entities.Line;
 import main.Renderer;
-import testcases.circleMoveToXY.CircleMoveToXY;
+import testcases.circleMoveToXY.CircleMoveToXYDirection;
 
 /**
  * Represents a test case circle
@@ -89,7 +89,7 @@ public class CircleEntity
      */
     public void update()
     {
-        network.setInputs(circle.getX() - CircleMoveToXY.goalX > 0 ? -1 : 1, circle.getY() - CircleMoveToXY.goalY > 0 ? -1 : 1);
+        network.setInputs(circle.getX() - CircleMoveToXYDirection.goalX > 0 ? -1 : 1, circle.getY() - CircleMoveToXYDirection.goalY > 0 ? -1 : 1);
         network.update();
         double[] outputs = network.getOutputs();
         

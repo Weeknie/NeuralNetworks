@@ -19,7 +19,7 @@ import testcases.TestCase;
  * Learning: Genetic algorithm with doubles (the weights) as genes
  * @author Maarten Slenter
  */
-public class CircleMoveToXY implements TestCase
+public class CircleMoveToXYDirection implements TestCase
 {
     /**
      * The circle entity instances

@@ -5,7 +5,7 @@ import java.util.TimerTask;
 
 import javax.swing.JFrame;
 import testcases.TestCase;
-import testcases.circleMoveToXY.CircleMoveToXY;
+import testcases.circleMoveToXY.CircleMoveToXYDirection;
 
 /**
  * 
@@ -25,7 +25,7 @@ public class NeuralNetworks
     {
         final Renderer renderer = new Renderer();
         
-        final TestCase testCase = new CircleMoveToXY();
+        final TestCase testCase = new CircleMoveToXYDirection();
         testCase.initialize(renderer);
         
         JFrame frame = new JFrame();
