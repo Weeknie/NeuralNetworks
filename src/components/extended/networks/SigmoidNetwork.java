@@ -22,7 +22,7 @@ import components.extended.neurons.SigmoidNeuron;
  */
 public class SigmoidNetwork extends Network
 {
-    public SigmoidNetwork(int inputs, int outputs, int hiddenLayers, int neuronsPerLayer, double compFactor, double multFactor)
+    public SigmoidNetwork(int inputs, int outputs, int hiddenLayers, int neuronsPerLayer, double inputCompFactor,double compFactor, double multFactor)
     {
         /**
          * Construct the input layer, one connection per neuron
@@ -30,7 +30,7 @@ public class SigmoidNetwork extends Network
         inputLayer = new Layer();
         for(int i = 1; i <= inputs; i++)
         {
-            Neuron neuron = new SigmoidNeuron(compFactor, multFactor);
+            Neuron neuron = new SigmoidNeuron(inputCompFactor, multFactor);
             inputLayer.addNeuron(neuron);
             
             Connection connection = new Connection(generateWeight());
