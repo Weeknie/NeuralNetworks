@@ -76,4 +76,11 @@ public abstract class Chromosome<T> implements Comparable<Chromosome>
     {
         return fitness;
     }
+    
+    /**
+     * Clones this object
+     * @return A clone of this object
+     */
+    @Override
+    public abstract Chromosome clone();
 }

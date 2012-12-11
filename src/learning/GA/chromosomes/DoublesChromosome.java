@@ -82,4 +82,11 @@ public class DoublesChromosome extends Chromosome<Double>
             doubles.set(i, tmp);
         }
     }
+    
+    @Override
+    public DoublesChromosome clone()
+    {
+        DoublesChromosome chromo = new DoublesChromosome(length, fitness, doubles);
+        return chromo;
+    }
 }

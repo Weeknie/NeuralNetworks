@@ -1,11 +1,10 @@
-package testcases.circleMoveToXY;
+package testcases.circleMoveToXYCoordinates;
 
 import java.awt.Color;
 import java.util.ArrayList;
 
 import components.extended.networks.SigmoidNetwork;
 import graphics.entities.Line;
-import graphics.networks.DrawableDefaultNetwork;
 import learning.GA.ChromoPool;
 import learning.GA.chromosomes.Chromosome;
 import learning.GA.chromosomes.DoublesChromosome;
@@ -19,7 +18,7 @@ import testcases.TestCase;
  * Learning: Genetic algorithm with doubles (the weights) as genes
  * @author Maarten Slenter
  */
-public class CircleMoveToXYDirection implements TestCase
+public class CircleMoveToXYCoordinates extends TestCase
 {
     /**
      * The circle entity instances
@@ -73,9 +72,9 @@ public class CircleMoveToXYDirection implements TestCase
         renderer.addDrawable(goalLineX);
         renderer.addDrawable(goalLineY);
         
-        for(int i = 1; i <= 100; i++)
+        for(int i = 1; i <= 500; i++)
         {
-            CircleEntity circleEntity = new CircleEntity(400, 400, 5, new SigmoidNetwork(2, 2, 1, 6, 1, 10), renderer);
+            CircleEntity circleEntity = new CircleEntity(400, 400, 5, new SigmoidNetwork(2, 2, 1, 6, 300, 1, 10), renderer);
             circleEntities.add(circleEntity);
             renderer.addDrawable(circleEntity.getCircle());
         }
@@ -112,7 +111,20 @@ public class CircleMoveToXYDirection implements TestCase
                 circleEntities.get(i).getNetwork().setWeights(((DoublesChromosome) newChromosomes.get(i)).getDoubles());
             }
             
+            System.out.println("Generation " + generation + ": " + chromoPool.getAvgFitness());
+            
             updateCount = 0;
+            generation++;
         }
+    }
+    
+    /**
+     * Proxy method for chromoPool.getAvgFitness
+     * @return The average fitness of the chromosome pool
+     */
+    @Override
+    public double getAvgFitness()
+    {
+        return chromoPool.getAvgFitness();
     }
 }
