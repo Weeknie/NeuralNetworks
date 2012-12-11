@@ -5,6 +5,7 @@ import java.util.TimerTask;
 
 import javax.swing.JFrame;
 import testcases.TestCase;
+import testcases.circleMoveToXYCoordinates.CircleMoveToXYCoordinates;
 import testcases.circleMoveToXYDirection.CircleMoveToXYDirection;
 
 /**
@@ -14,6 +15,8 @@ import testcases.circleMoveToXYDirection.CircleMoveToXYDirection;
 public class NeuralNetworks
 {
     static Timer timer = new Timer();
+    
+    static int count = 0;
     
     /**
      * Initializes the renderer and test case, then sets up the window.
@@ -38,9 +41,15 @@ public class NeuralNetworks
             @Override
             public void run()
             {
-                testCase.update();
+                count++;
+                
+                if(count == (int) Math.min(50, Math.max((testCase.getGeneration() + testCase.getAvgFitness())/50, 1)))
+                {
+                    testCase.update();
+                    count = 0;
+                }
             }
-        }, 0, 50);
+        }, 0, 1);
         
         timer.scheduleAtFixedRate(new TimerTask(){
             @Override
