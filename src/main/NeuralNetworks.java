@@ -5,7 +5,7 @@ import java.util.TimerTask;
 
 import javax.swing.JFrame;
 import testcases.TestCase;
-import testcases.circleMoveToXY.CircleMoveToXYDirection;
+import testcases.circleMoveToXYDirection.CircleMoveToXYDirection;
 
 /**
  * 
