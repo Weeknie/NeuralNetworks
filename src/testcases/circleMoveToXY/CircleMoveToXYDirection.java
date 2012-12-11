@@ -1,4 +1,4 @@
-package testcases.circleMoveToXYDirection;
+package testcases.circleMoveToXY;
 
 import java.awt.Color;
 import java.util.ArrayList;
