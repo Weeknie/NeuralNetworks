@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import components.extended.networks.SigmoidNetwork;
 import graphics.entities.Line;
-import graphics.networks.DrawableDefaultNetwork;
 import learning.GA.ChromoPool;
 import learning.GA.chromosomes.Chromosome;
 import learning.GA.chromosomes.DoublesChromosome;
@@ -19,7 +18,7 @@ import testcases.TestCase;
  * Learning: Genetic algorithm with doubles (the weights) as genes
  * @author Maarten Slenter
  */
-public class CircleMoveToXYDirection implements TestCase
+public class CircleMoveToXYDirection extends TestCase
 {
     /**
      * The circle entity instances
@@ -75,7 +74,8 @@ public class CircleMoveToXYDirection implements TestCase
         
         for(int i = 1; i <= 100; i++)
         {
-            CircleEntity circleEntity = new CircleEntity(400, 400, 5, new SigmoidNetwork(2, 2, 1, 6, 1, 10), renderer);
+            //CircleEntity circleEntity = new CircleEntity((int) (800 * Math.random()), (int) (800 * Math.random()), 5, new SigmoidNetwork(2, 2, 1, 6, 1, 1, 10), renderer);
+            CircleEntity circleEntity = new CircleEntity((int) (400 * Math.random()), (int) (400 * Math.random()), 5, new SigmoidNetwork(2, 2, 1, 6, 1, 1, 10), renderer);
             circleEntities.add(circleEntity);
             renderer.addDrawable(circleEntity.getCircle());
         }
@@ -99,20 +99,48 @@ public class CircleMoveToXYDirection implements TestCase
         
         if(updateCount == 100)
         {            
+            Chromosome workingChromo = null;
             for(CircleEntity circleEntity : circleEntities)
             {
                 double fitness = 1 / (Math.abs(goalX - circleEntity.getX()) + Math.abs(goalY - circleEntity.getY()));
-                chromoPool.addChromosome(new DoublesChromosome(chromoLength, fitness, circleEntity.getNetwork().getWeights()));
+                Chromosome chromosome = new DoublesChromosome(chromoLength, fitness, circleEntity.getNetwork().getWeights());
+                if(fitness == Double.POSITIVE_INFINITY)
+                {
+                    workingChromo = chromosome.clone();
+                }
+                chromoPool.addChromosome(chromosome);
                 circleEntity.reset();
             }
             
             ArrayList<Chromosome> newChromosomes = chromoPool.update();
+            
+            if(workingChromo != null)
+            {
+                for(int i = 0; i <= newChromosomes.size() - 1; i++)
+                {
+                    newChromosomes.set(i, workingChromo);
+                }
+            }
+            
             for(int i = 0; i <= newChromosomes.size() - 1; i++)
             {
                 circleEntities.get(i).getNetwork().setWeights(((DoublesChromosome) newChromosomes.get(i)).getDoubles());
             }
             
+            System.out.println("Generation " + generation + ": " + chromoPool.getAvgFitness());
+            
             updateCount = 0;
+            generation++;
         }
+    }
+    
+    /**
+     * Proxy method for chromoPool.getAvgFitness
+     * @return The average fitness of the chromosome pool
+     */
+    @Override
+    public double getAvgFitness()
+    {
+        return chromoPool.getAvgFitness();
     }
 }
