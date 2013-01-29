@@ -12,14 +12,18 @@ public class Settings
     /**
      * The settings
      */
-    private HashMap<String, Object> settings = new HashMap<String, Object>();
+    private final HashMap<String, Object> settings = new HashMap<String, Object>();
     
     /**
      * The default settings
      */
-    private static final HashMap<String, Object> defaults = new HashMap<String, Object>();
+    private final HashMap<String, Object> defaults = new HashMap<String, Object>();
     
-    static
+    /**
+     * The category for upcoming puts
+     */
+    private String category = "";
+    
     {
         //General
         defaults.put("nonConvergingGenCount", 50);
@@ -47,7 +51,29 @@ public class Settings
      */
     public void set(String key, Object value)
     {
+        if(!category.isEmpty())
+        {
+            key = category + "." + key;
+        }
+        
         settings.put(key, value);
+    }
+    
+    /**
+     * Sets the category for all following property changes
+     * @param category The new category
+     */
+    public void setCategory(String category)
+    {
+        this.category = category;
+    }
+    
+    /**
+     * Clear the category
+     */
+    public void clearCategory()
+    {
+        category = "";
     }
     
     /**
