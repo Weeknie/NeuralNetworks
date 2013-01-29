@@ -135,6 +135,12 @@ public class Settings
         throw new RuntimeException("The value under key '" + key + "' is not a boolean");
     }
     
+    /**
+     * Returns the value under the key or the default is no value is set.
+     * Throws an exception when the key doesn't exist.
+     * @param key The key to fetch the value for
+     * @return The value under the specified key
+     */
     private Object getValue(String key)
     {
         Object value;
