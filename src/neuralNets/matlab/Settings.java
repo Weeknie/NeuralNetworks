@@ -65,7 +65,28 @@ public class Settings
             key = category + "." + key;
         }
         
+        if(!defaults.containsKey(key))
+        {
+            System.out.println("Key '" + key + "' is invalid, it does not have a default");
+            return;
+        }
+        
         settings.put(key, value);
+    }
+    
+    /**
+     * Resets a certain key to its default value.
+     * This is done by removing the key from the internal settings HashMap, thus making getValue fall back to the default
+     * @param key 
+     */
+    public void reset(String key)
+    {
+        if(!category.isEmpty())
+        {
+            key = category + "." + key;
+        }
+        
+        settings.remove(key);
     }
     
     /**
@@ -148,7 +169,7 @@ public class Settings
         {
             value = settings.get(key);
         }
-        else if(settings.containsKey(key))
+        else if(defaults.containsKey(key))
         {
             value = defaults.get(key);
         }
