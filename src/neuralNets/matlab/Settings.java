@@ -42,6 +42,14 @@ public class Settings
         defaults.put("runToTarget", false);
         defaults.put("solutionTarget", 25);
         defaults.put("threadCount", 4);
+        
+        //Test cases
+            //CircleMoveToXYDirection
+            defaults.put("circleMoveToXYDirection.crossOverRate", 0.7);
+            defaults.put("circleMoveToXYDirection.goalX", 200);
+            defaults.put("circleMoveToXYDirection.goalY", 200);
+            defaults.put("circleMoveToXYDirection.mutationRate", 0.01);
+            defaults.put("circleMoveToXYDirection.popSize", 100);
     }
     
     /**
@@ -97,6 +105,32 @@ public class Settings
         {
             Number number = (Number) value;
             return number.intValue();
+        }
+        
+        throw new RuntimeException("The value under key '" + key + "' is not a number");
+    }
+    
+    /**
+     * Returns the value under key as a double, or the default if no value is set.
+     * @param key The key to fetch the value for
+     * @return The value under the specified key, as a double.
+     */
+    public double getDouble(String key)
+    {
+        Object value;
+        if(settings.containsKey(key))
+        {
+            value = settings.get(key);
+        }
+        else
+        {
+            value = defaults.get(key);
+        }
+        
+        if(value instanceof Number)
+        {
+            Number number = (Number) value;
+            return number.doubleValue();
         }
         
         throw new RuntimeException("The value under key '" + key + "' is not a number");
