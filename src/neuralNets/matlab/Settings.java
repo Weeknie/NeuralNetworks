@@ -26,7 +26,9 @@ public class Settings
         defaults.put("runBatch", true);
         
         //Single runs
+        defaults.put("renderUpdateTimeBase", 50);
         defaults.put("slowdownFactor", 10);
+        defaults.put("testCaseUpdateTimeBase", 1);
         defaults.put("updateCountMax", 50);
         defaults.put("updateCountMin", 1);
         

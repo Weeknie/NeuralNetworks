@@ -125,7 +125,7 @@ public class SingleThread extends Thread
                     count = 0;
                 }
             }
-        }, 0, 1 * settings.getInt("slowdownFactor"));
+        }, 0, settings.getInt("testCaseUpdateTimeBase") * settings.getInt("slowdownFactor"));
         
         timer.scheduleAtFixedRate(new TimerTask(){
             @Override
@@ -133,7 +133,7 @@ public class SingleThread extends Thread
             {
                 renderer.repaint();
             }
-        }, 0, 50 * settings.getInt("slowdownFactor"));
+        }, 0, settings.getInt("renderUpdateTimeBase") * settings.getInt("slowdownFactor"));
     }
     
     /**
