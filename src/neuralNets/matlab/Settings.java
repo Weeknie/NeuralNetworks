@@ -92,16 +92,7 @@ public class Settings
      */
     public int getInt(String key)
     {
-        Object value;
-        if(settings.containsKey(key))
-        {
-            value = settings.get(key);
-        }
-        else
-        {
-            value = defaults.get(key);
-        }
-        
+        Object value = getValue(key);
         if(value instanceof Number)
         {
             Number number = (Number) value;
@@ -118,16 +109,7 @@ public class Settings
      */
     public double getDouble(String key)
     {
-        Object value;
-        if(settings.containsKey(key))
-        {
-            value = settings.get(key);
-        }
-        else
-        {
-            value = defaults.get(key);
-        }
-        
+        Object value = getValue(key);
         if(value instanceof Number)
         {
             Number number = (Number) value;
@@ -144,21 +126,31 @@ public class Settings
      */
     public boolean getBool(String key)
     {
-        Object value;
-        if(settings.containsKey(key))
-        {
-            value = settings.get(key);
-        }
-        else
-        {
-            value = defaults.get(key);
-        }
-        
+        Object value = getValue(key);
         if(value instanceof Boolean)
         {
             return (Boolean) value;
         }
         
         throw new RuntimeException("The value under key '" + key + "' is not a boolean");
+    }
+    
+    private Object getValue(String key)
+    {
+        Object value;
+        if(settings.containsKey(key))
+        {
+            value = settings.get(key);
+        }
+        else if(settings.containsKey(key))
+        {
+            value = defaults.get(key);
+        }
+        else
+        {
+            throw new IllegalArgumentException("Key '" + key + "' not found in settings");
+        }
+        
+        return value;
     }
 }
