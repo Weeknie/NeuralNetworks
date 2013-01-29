@@ -11,6 +11,7 @@ import neuralNets.lib.learning.GA.ChromoPool;
 import neuralNets.lib.learning.GA.chromosomes.Chromosome;
 import neuralNets.lib.learning.GA.chromosomes.DoublesChromosome;
 import neuralNets.main.Renderer;
+import neuralNets.matlab.Settings;
 import neuralNets.testcases.TestCase;
 
 /**
@@ -28,49 +29,41 @@ public class CircleMoveToXYDirection extends TestCase
     ArrayList<CircleEntity> circleEntities = new ArrayList<CircleEntity>();
     
     /**
-     * The x coordinate the circles should move to
+     * The settings
      */
-    public static int goalX = 200;
-    
-    /**
-     * The y coordinate the circles should move to
-     */
-    public static int goalY = 200;
+    private Settings settings;
     
     /**
      * The line that represents the x coordinate goal
      */
-    private Line goalLineX = new Line(goalX, 0, goalX, 1500, Color.green);
+    private Line goalLineX;
     
     /**
      * The line that represents the y coordinate goal
      */
-    private Line goalLineY = new Line(0, goalY, 1500, goalY, Color.green);
+    private Line goalLineY;
     
     /**
      * The chromosome pool to use for the genetic algorithm
      */
-    private ChromoPool chromoPool = new ChromoPool(0.7, 0.01);
-    
+    private ChromoPool chromoPool;
     /**
      * Counts the amount of updates that have taken place.
      * After 100 updates the neural networks will be updated with new weights.
      */
     private int updateCount = 0;
     
-    /**
-     * The population size (the amount of circle entities)
-     */
-    private static int popSize = 100;
-    
-    /**
-     * The amount of circles to visualize the network for
-     */
-    private static int visualizeAmount = 10;
-    
     {
         networkFactory = new SigmoidFactory();
         networkFactory.setTopology(2, 2, 1, 6, 1, 1, 10);
+    }
+    
+    public CircleMoveToXYDirection(Settings settings)
+    {
+        this.settings = settings;
+        goalLineX = new Line(settings.getInt("circleMoveToXYDirection.goalX"), 0, settings.getInt("circleMoveToXYDirection.goalX"), settings.getInt("windowHeight"), Color.green);
+        goalLineY = new Line(0, settings.getInt("circleMoveToXYDirection.goalY"), settings.getInt("windowHeight"), settings.getInt("circleMoveToXYDirection.goalY"), Color.green);
+        chromoPool = new ChromoPool(settings.getDouble("circleMoveToXYDirection.crossOverRate"), settings.getDouble("circleMoveToXYDirection.mutationRate"));
     }
 
     /**
@@ -80,9 +73,9 @@ public class CircleMoveToXYDirection extends TestCase
     @Override
     public void initialize()
     {
-        for(int i = 1; i <= popSize; i++)
+        for(int i = 1; i <= settings.getInt("circleMoveToXYDirection.popSize"); i++)
         {
-            CircleEntity circleEntity = new CircleEntity((int) (400), (int) (400), 5, networkFactory.create());
+            CircleEntity circleEntity = new CircleEntity((int) (400), (int) (400), settings.getInt("circleMoveToXYDirection.goalX"), settings.getInt("circleMoveToXYDirection.goalX"), 5, networkFactory.create());
             circleEntities.add(circleEntity);
         }
     }
@@ -106,9 +99,9 @@ public class CircleMoveToXYDirection extends TestCase
         
         Random random = new Random();
         
-        for(int i = 0; i <= visualizeAmount - 1; i++)
+        for(int i = 0; i <= settings.getInt("circleMoveToXYDirection.visualizeAmount") - 1; i++)
         {
-            int index = (int) random.nextInt(100);
+            int index = (int) random.nextInt(settings.getInt("circleMoveToXYDirection.visualizeAmount"));
             
             DrawableSigmoidNetwork.drawNetwork(circleEntities.get(index).getNetwork(), renderer, 300 * (i % 5), 200 * (int) (i / 5), 2, Color.black);
             circleEntities.get(index).getCircle().setColor(Color.red);
@@ -159,7 +152,7 @@ public class CircleMoveToXYDirection extends TestCase
             Chromosome workingChromo = null;
             for(CircleEntity circleEntity : circleEntities)
             {
-                double fitness = 1 / (Math.abs(goalX - circleEntity.getX()) + Math.abs(goalY - circleEntity.getY()));
+                double fitness = 1 / (Math.abs(settings.getInt("circleMoveToXYDirection.goalX") - circleEntity.getX()) + Math.abs(settings.getInt("circleMoveToXYDirection.goalY") - circleEntity.getY()));
                 Chromosome chromosome = new DoublesChromosome(fitness, circleEntity.getNetwork().getAdjustables());
                 if(fitness == Double.POSITIVE_INFINITY)
                 {
@@ -208,7 +201,7 @@ public class CircleMoveToXYDirection extends TestCase
     @Override
     public CircleMoveToXYDirection clone()
     {
-        CircleMoveToXYDirection clone = new CircleMoveToXYDirection();
+        CircleMoveToXYDirection clone = new CircleMoveToXYDirection(settings);
         clone.initialize();
         return clone;
     }

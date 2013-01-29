@@ -21,6 +21,16 @@ public class CircleEntity
     private final int startY;
     
     /**
+     * The x goal coordinate
+     */
+    private final int goalX;
+    
+    /**
+     * The y goal coordinate
+     */
+    private final int goalY;
+    
+    /**
      * The circle that represents this circle entity
      */
     private Circle circle;
@@ -34,16 +44,20 @@ public class CircleEntity
      * 
      * @param x The x starting position
      * @param y The y starting position
+     * @param goalX The x goal coordinate
+     * @param goalY The y goal coordinate
      * @param radius The radius of the circle
      * @param network The neural network that will guide this circle
      * @param renderer The renderer object
      */
-    public CircleEntity(int x, int y, int radius, Network network)
+    public CircleEntity(int x, int y, int goalX, int goalY, int radius, Network network)
     {
         circle = new Circle(x, y, radius);
         this.network = network;
         this.startX = x;
         this.startY = y;
+        this.goalX = goalX;
+        this.goalY = goalY;
     }
     
     /**
@@ -79,7 +93,7 @@ public class CircleEntity
      */
     public void update()
     {
-        network.setInputs(circle.getX() - CircleMoveToXYDirection.goalX > 0 ? -1 : 1, circle.getY() - CircleMoveToXYDirection.goalY > 0 ? -1 : 1);
+        network.setInputs(circle.getX() - goalX > 0 ? -1 : 1, circle.getY() - goalY > 0 ? -1 : 1);
         network.update();
         double[] outputs = network.getOutputs();
         

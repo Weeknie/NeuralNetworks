@@ -39,7 +39,7 @@ public class Main
      */
     public static void main(boolean exitOnClose, Settings settings)
     {
-        testCase = new CircleMoveToXYDirection();
+        testCase = new CircleMoveToXYDirection(settings);
         Main.settings = settings;
         if(settings.getBool("runBatch"))
         {
