@@ -31,6 +31,8 @@ public class Settings
         defaults.put("testCaseUpdateTimeBase", 1);
         defaults.put("updateCountMax", 50);
         defaults.put("updateCountMin", 1);
+        defaults.put("windowHeight", 800);
+        defaults.put("windowWidth", 1500);
         
         //Batch runs
         defaults.put("runToTarget", false);

@@ -86,7 +86,7 @@ public class SingleThread extends Thread
         testCase.initialize(renderer);
         
         frame = new JFrame();
-        frame.setSize(1500, 800);
+        frame.setSize(settings.getInt("windowWidth"), settings.getInt("windowHeight"));
         frame.getContentPane().add(renderer);
         frame.setVisible(true);
         
