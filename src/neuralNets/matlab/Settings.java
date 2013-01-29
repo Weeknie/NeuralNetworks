@@ -50,6 +50,7 @@ public class Settings
             defaults.put("circleMoveToXYDirection.goalY", 200);
             defaults.put("circleMoveToXYDirection.mutationRate", 0.01);
             defaults.put("circleMoveToXYDirection.popSize", 100);
+            defaults.put("circleMoveToXYDirection.visualizeAmount", 0);
     }
     
     /**
