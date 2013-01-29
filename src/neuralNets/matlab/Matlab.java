@@ -7,12 +7,7 @@ import neuralNets.main.Main;
  * @author Maarten Slenter
  */
 public class Matlab 
-{
-    /**
-     * Indicates if tests are running
-     */
-    private boolean running = false;
-    
+{    
     /**
      * Starts the tests, using the default settings
      */
