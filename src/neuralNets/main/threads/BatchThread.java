@@ -82,7 +82,10 @@ public class BatchThread extends Thread
                         results[2] += result[2];
                     }
                     
-                    System.out.println("Simulation results: (" + results[0] + " : " + results[1] + " : " + (double) Math.round((double) results[2]/ (double) (results[0] + results[1]) * 100) / 100 + ")");
+                    if(settings.getBool("verbose"))
+                    {
+                        System.out.println("Simulation results: (" + results[0] + " : " + results[1] + " : " + (double) Math.round((double) results[2]/ (double) (results[0] + results[1]) * 100) / 100 + ")");
+                    }
                     run = false;
                 }
             }

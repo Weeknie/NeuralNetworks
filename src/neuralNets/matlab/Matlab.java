@@ -32,12 +32,34 @@ public class Matlab
     {
         if(isRunning())
         {
-            System.out.println("Tests are already running");
+            if(settings.getBool("verbose"))
+            {
+                System.out.println("Tests are already running");
+            }
         }
         else
         {
+            if(settings.getBool("block") && !(settings.getBool("runBatch") && settings.getBool("runToTarget")))
+            {
+                System.out.println("Can not run in block mode, not running batch and/or not running to target");
+            }
+            
             Main.main(false, settings);
-            System.out.println("Tests running");
+            if(settings.getBool("verbose"))
+            {
+                System.out.println("Tests running");
+            }
+            
+            if(settings.getBool("block"))
+            {
+                while(Main.isRunning())
+                {}
+                
+                if(settings.getBool("verbose"))
+                {
+                    System.out.println("Simulations finished");
+                }
+            }
         }
     }
     

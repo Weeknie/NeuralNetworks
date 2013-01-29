@@ -26,8 +26,10 @@ public class Settings
     
     {
         //General
+        defaults.put("block", false);
         defaults.put("nonConvergingGenCount", 50);
         defaults.put("runBatch", true);
+        defaults.put("verbose", true);
         
         //Single runs
         defaults.put("renderUpdateTimeBase", 50);
