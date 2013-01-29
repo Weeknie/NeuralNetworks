@@ -78,7 +78,12 @@ public class ChromoPool<T extends DoublesChromosome>
     {
         if(chromoPool.size() % 2 != 0)
         {
-            throw new RuntimeException("Gene pool length is not even");
+            throw new RuntimeException("Gene pool size is not even");
+        }
+        
+        if(chromoPool.size() < 4)
+        {
+            throw new RuntimeException("Gene pool size is too small");
         }
         
         ArrayList<Chromosome<T>> newChromoList = new ArrayList<Chromosome<T>>();
