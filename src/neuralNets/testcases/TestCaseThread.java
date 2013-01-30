@@ -73,7 +73,10 @@ public class TestCaseThread extends Thread
             {
                 nonConverging++;
                 totalGenerations += testCase.getGeneration();
-                System.out.println(number + ": Did not converge, #" + nonConverging + " / " + (nonConverging + correctSolutions));
+                if(settings.getBool("verbose"))
+                {
+                    System.out.println(number + ": Did not converge, #" + nonConverging + " / " + (nonConverging + correctSolutions));
+                }
                 testCase.reinitialize();
             }
             
