@@ -81,11 +81,6 @@ public class ChromoPool<T extends DoublesChromosome>
             throw new RuntimeException("Gene pool size is not even");
         }
         
-        if(chromoPool.size() < 4)
-        {
-            throw new RuntimeException("Gene pool size is too small");
-        }
-        
         ArrayList<Chromosome<T>> newChromoList = new ArrayList<Chromosome<T>>();
         
         double totalFitness = 0;
@@ -96,7 +91,7 @@ public class ChromoPool<T extends DoublesChromosome>
         
         avgFitness = totalFitness/chromoPool.size();
         
-        for(int i = chromoPool.size() / 2; i > 0; i -= 2)
+        for(int i = chromoPool.size(); i > 0; i -= 2)
         {            
             Chromosome<T> c1 = pickChromosome(chromoPool);
             Chromosome<T> c2 = pickChromosome(chromoPool);
@@ -111,8 +106,6 @@ public class ChromoPool<T extends DoublesChromosome>
                 c1.crossOver(crossOverPoint, c2);
             }
             
-            newChromoList.add(c1);
-            newChromoList.add(c2);
             newChromoList.add(c1);
             newChromoList.add(c2);
         }
