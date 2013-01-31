@@ -76,7 +76,7 @@ public class Matlab
      * Polls the current results of all threads
      * @return The results from up to this moment
      */
-    public int[] poll()
+    public double[] poll()
     {
         return Main.poll();
     }

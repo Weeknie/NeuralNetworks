@@ -96,9 +96,9 @@ public class BatchThread extends Thread
      * Polls the current results of all threads
      * @return The results from up to this moment
      */
-    public int[] poll()
+    public double[] poll()
     {
-        int[] returnResults = {0, 0, 0};
+        double[] returnResults = {0, 0, 0};
         
         for(int i = 0; i <= settings.getInt("threadCount") - 1; i++)
         {

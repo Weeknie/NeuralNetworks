@@ -66,7 +66,7 @@ public class Main
      * Polls the current results of all threads
      * @return The results from up to this moment
      */
-    public static int[] poll()
+    public static double[] poll()
     {
         if(settings.getBool("runBatch"))
         {
