@@ -7,9 +7,10 @@ import java.util.Random;
 import neuralNets.lib.components.extended.networkFactories.SigmoidFactory;
 import neuralNets.lib.graphics.entities.Line;
 import neuralNets.lib.graphics.networks.DrawableSigmoidNetwork;
-import neuralNets.lib.learning.GA.ChromoPool;
+import neuralNets.lib.learning.GA.AbstractChromoPool;
 import neuralNets.lib.learning.GA.chromosomes.Chromosome;
 import neuralNets.lib.learning.GA.chromosomes.DoublesChromosome;
+import neuralNets.lib.learning.GA.mkI.ChromoPool;
 import neuralNets.main.Renderer;
 import neuralNets.matlab.Settings;
 import neuralNets.testcases.TestCase;
@@ -46,7 +47,8 @@ public class CircleMoveToXYDirection extends TestCase
     /**
      * The chromosome pool to use for the genetic algorithm
      */
-    private ChromoPool chromoPool;
+    private AbstractChromoPool chromoPool;
+    
     /**
      * Counts the amount of updates that have taken place.
      * After 100 updates the neural networks will be updated with new weights.
@@ -63,7 +65,8 @@ public class CircleMoveToXYDirection extends TestCase
         this.settings = settings;
         goalLineX = new Line(settings.getInt("circleMoveToXYDirection.goalX"), 0, settings.getInt("circleMoveToXYDirection.goalX"), settings.getInt("windowHeight"), Color.green);
         goalLineY = new Line(0, settings.getInt("circleMoveToXYDirection.goalY"), settings.getInt("windowHeight"), settings.getInt("circleMoveToXYDirection.goalY"), Color.green);
-        chromoPool = new ChromoPool(settings.getDouble("circleMoveToXYDirection.crossOverRate"), settings.getDouble("circleMoveToXYDirection.mutationRate"));
+        chromoPool = new ChromoPool();
+        chromoPool.initialize(settings.getDouble("circleMoveToXYDirection.crossOverRate"), settings.getDouble("circleMoveToXYDirection.mutationRate"));
     }
 
     /**
