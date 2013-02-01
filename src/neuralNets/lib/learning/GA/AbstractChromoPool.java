@@ -100,7 +100,7 @@ public abstract class AbstractChromoPool<T extends Chromosome>
 	 * @param name The designation of the chromo pool
 	 * @return An instance of the requested chromo pool
 	 */
-	protected static AbstractChromoPool createChromoPool(String mainPackage, String name)
+	public static AbstractChromoPool createChromoPool(String name)
     {
         AbstractChromoPool chromoPool = null;
 
