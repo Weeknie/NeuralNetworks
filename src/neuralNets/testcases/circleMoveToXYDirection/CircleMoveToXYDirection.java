@@ -10,7 +10,6 @@ import neuralNets.lib.graphics.networks.DrawableSigmoidNetwork;
 import neuralNets.lib.learning.GA.AbstractChromoPool;
 import neuralNets.lib.learning.GA.chromosomes.Chromosome;
 import neuralNets.lib.learning.GA.chromosomes.DoublesChromosome;
-import neuralNets.lib.learning.GA.mkI.ChromoPool;
 import neuralNets.main.Renderer;
 import neuralNets.matlab.Settings;
 import neuralNets.testcases.TestCase;
@@ -65,7 +64,7 @@ public class CircleMoveToXYDirection extends TestCase
         this.settings = settings;
         goalLineX = new Line(settings.getInt("circleMoveToXYDirection.goalX"), 0, settings.getInt("circleMoveToXYDirection.goalX"), settings.getInt("windowHeight"), Color.green);
         goalLineY = new Line(0, settings.getInt("circleMoveToXYDirection.goalY"), settings.getInt("windowHeight"), settings.getInt("circleMoveToXYDirection.goalY"), Color.green);
-        chromoPool = new ChromoPool();
+        chromoPool = AbstractChromoPool.createChromoPool(settings.getString("GAVersion"));
         chromoPool.initialize(settings.getDouble("circleMoveToXYDirection.crossOverRate"), settings.getDouble("circleMoveToXYDirection.mutationRate"));
     }
 

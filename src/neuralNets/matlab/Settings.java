@@ -30,6 +30,7 @@ public class Settings
         defaults.put("nonConvergingGenCount", 50);
         defaults.put("runBatch", true);
         defaults.put("verbose", true);
+        defaults.put("GAVersion", "mkI");
         
         //Single runs
         defaults.put("renderUpdateTimeBase", 50);
@@ -156,6 +157,22 @@ public class Settings
         }
         
         throw new RuntimeException("The value under key '" + key + "' is not a boolean");
+    }
+    
+    /**
+     * Returns the value under key as a string, or the default if no value is set.
+     * @param key The key to fetch the value for
+     * @return The value under the specified key, as a string.
+     */
+    public String getString(String key)
+    {
+        Object value = getValue(key);
+        if(value instanceof String)
+        {
+            return (String) value;
+        }
+        
+        throw new RuntimeException("The value under key '" + key + "' is not a string");
     }
     
     /**
