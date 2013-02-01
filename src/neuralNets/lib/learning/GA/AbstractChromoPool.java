@@ -106,7 +106,7 @@ public abstract class AbstractChromoPool<T extends Chromosome>
 
         try
         {
-            chromoPool = (AbstractChromoPool) Class.forName("neuralNets.lib.learning.GA." + name).newInstance();
+            chromoPool = (AbstractChromoPool) Class.forName("neuralNets.lib.learning.GA." + name + ".ChromoPool").newInstance();
         }
         catch (InstantiationException ex)
         {
