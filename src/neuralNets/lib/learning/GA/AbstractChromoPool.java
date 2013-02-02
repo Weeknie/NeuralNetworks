@@ -27,7 +27,7 @@ public abstract class AbstractChromoPool<T extends Chromosome>
     /**
      * The settings
      */
-    Settings settings;
+    protected Settings settings;
     
     /**
      * The average fitness of this pool, set at each update
