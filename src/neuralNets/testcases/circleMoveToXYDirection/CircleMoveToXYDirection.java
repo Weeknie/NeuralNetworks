@@ -128,8 +128,11 @@ public class CircleMoveToXYDirection extends TestCase
     @Override 
     public void reinitialize(Renderer renderer)
     {
+        circleEntities.clear();
+        updateCount = 0;
+        generation = 0;
+        chromoPool.reset();
         renderer.clearDrawables();
-        reinitialize();
         initialize(renderer);
     }
 
@@ -204,7 +207,6 @@ public class CircleMoveToXYDirection extends TestCase
     public CircleMoveToXYDirection clone()
     {
         CircleMoveToXYDirection clone = new CircleMoveToXYDirection(settings);
-        clone.initialize();
         return clone;
     }
 }
