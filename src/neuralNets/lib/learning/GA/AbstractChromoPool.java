@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import neuralNets.lib.learning.GA.chromosomes.Chromosome;
+import neuralNets.matlab.Settings;
 
 /**
  * Abstract chromopool implementation.
@@ -24,6 +25,11 @@ public abstract class AbstractChromoPool<T extends Chromosome>
     protected double crossOverRate;
     
     /**
+     * The settings
+     */
+    Settings settings;
+    
+    /**
      * The average fitness of this pool, set at each update
      */
     protected double avgFitness = 0;
@@ -34,14 +40,16 @@ public abstract class AbstractChromoPool<T extends Chromosome>
     protected ArrayList<Chromosome<T>> chromoPool = new ArrayList<Chromosome<T>>();
     
     /**
-     * Initializes the chromopool
-     * @param mutationRate The mutation rate of this chromo pool
+     * Initializes the chromo pool
      * @param crossOverRate The cross over rate of this chromo pool
+     * @param mutationRate The mutation rate of this chromo pool
+     * @param settings The settings
      */
-    public void initialize(double crossOverRate, double mutationRate)
+    public void initialize(double crossOverRate, double mutationRate, Settings settings)
     {
         this.crossOverRate = crossOverRate;
         this.mutationRate = mutationRate;
+        this.settings = settings;
     }
     
     /**

@@ -65,7 +65,7 @@ public class CircleMoveToXYDirection extends TestCase
         goalLineX = new Line(settings.getInt("circleMoveToXYDirection.goalX"), 0, settings.getInt("circleMoveToXYDirection.goalX"), settings.getInt("windowHeight"), Color.green);
         goalLineY = new Line(0, settings.getInt("circleMoveToXYDirection.goalY"), settings.getInt("windowHeight"), settings.getInt("circleMoveToXYDirection.goalY"), Color.green);
         chromoPool = AbstractChromoPool.createChromoPool(settings.getString("GAVersion"));
-        chromoPool.initialize(settings.getDouble("circleMoveToXYDirection.crossOverRate"), settings.getDouble("circleMoveToXYDirection.mutationRate"));
+        chromoPool.initialize(settings.getDouble("circleMoveToXYDirection.crossOverRate"), settings.getDouble("circleMoveToXYDirection.mutationRate"), settings);
     }
 
     /**
