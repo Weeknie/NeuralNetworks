@@ -21,7 +21,7 @@ public class ChromoPool<T extends DoublesChromosome> extends AbstractChromoPool<
     {
         if(chromoPool.size() % 2 != 0)
         {
-            throw new RuntimeException("Gene pool size is not even");
+            throw new RuntimeException("Gene pool size is not dividable by 2");
         }
         
         ArrayList<Chromosome<T>> newChromoList = new ArrayList<Chromosome<T>>();
