@@ -27,10 +27,10 @@ public class Settings
     {
         //General
         defaults.put("block", false);
+        defaults.put("GAVersion", "mkI");
         defaults.put("nonConvergingGenCount", 50);
         defaults.put("runBatch", true);
         defaults.put("verbose", true);
-        defaults.put("GAVersion", "mkI");
         
         //Single runs
         defaults.put("renderUpdateTimeBase", 50);
@@ -54,6 +54,10 @@ public class Settings
             defaults.put("circleMoveToXYDirection.mutationRate", 0.01);
             defaults.put("circleMoveToXYDirection.popSize", 100);
             defaults.put("circleMoveToXYDirection.visualizeAmount", 0);
+            
+        //Learning Algorithms
+            //GA mkIII
+            defaults.put("GAmkIII.popDivision", 1);
     }
     
     /**
