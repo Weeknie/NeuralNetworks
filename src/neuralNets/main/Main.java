@@ -59,7 +59,9 @@ public class Main
      */
     public static void main(String[] args)
     {
-        main(true, new Settings());
+        Settings runSettings = new Settings();
+        runSettings.set("runBatch", false);
+        main(true, runSettings);
     }
     
     /**
