@@ -59,31 +59,39 @@ public class TestCaseThread extends Thread
     @Override
     public void run()
     {
-        while(run)
+        try
         {
-            testCase.update();
-            if(testCase.getAvgFitness() == Double.POSITIVE_INFINITY)
+            while(run)
             {
-                correctSolutions++;
-                totalGenerations += testCase.getGeneration();
-                testCase.reinitialize();
-            }
-
-            if(testCase.getGeneration() == settings.getInt("nonConvergingGenCount"))
-            {
-                nonConverging++;
-                totalGenerations += testCase.getGeneration();
-                if(settings.getBool("verbose"))
+                testCase.update();
+                if(testCase.getAvgFitness() == Double.POSITIVE_INFINITY)
                 {
-                    System.out.println(number + ": Did not converge, #" + nonConverging + " / " + (nonConverging + correctSolutions));
+                    correctSolutions++;
+                    totalGenerations += testCase.getGeneration();
+                    testCase.reinitialize();
                 }
-                testCase.reinitialize();
+
+                if(testCase.getGeneration() == settings.getInt("nonConvergingGenCount"))
+                {
+                    nonConverging++;
+                    totalGenerations += testCase.getGeneration();
+                    if(settings.getBool("verbose"))
+                    {
+                        System.out.println(number + ": Did not converge, #" + nonConverging + " / " + (nonConverging + correctSolutions));
+                    }
+                    testCase.reinitialize();
+                }
+
+                if(settings.getBool("runToTarget") && correctSolutions + nonConverging == settings.getInt("solutionTarget"))
+                {
+                    run = false;
+                }
             }
-            
-            if(settings.getBool("runToTarget") && correctSolutions + nonConverging == settings.getInt("solutionTarget"))
-            {
-                run = false;
-            }
+        }
+        catch(Exception e)
+        {
+            System.out.println("Tests terminated: '" + e.getMessage() + "'");
+            run = false;
         }
     }
     

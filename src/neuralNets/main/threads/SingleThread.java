@@ -94,35 +94,43 @@ public class SingleThread extends Thread
             @Override
             public void run()
             {
-                count++;
-                
-                if(count == (int) Math.min(settings.getInt("updateCountMax"), Math.max((testCase.getAvgFitness()), settings.getInt("updateCountMin"))))
+                try
                 {
-                    testCase.update();
-                    if(currentGeneration != testCase.getGeneration())
-                    {
-                        System.out.println("Generation #" + testCase.getGeneration() + " : " + testCase.getAvgFitness());
-                        currentGeneration = testCase.getGeneration();
-                    }
-                    
-                    if(testCase.getAvgFitness() == Double.POSITIVE_INFINITY)
-                    {
-                        correctSolutions++;
-                        System.out.println("Solution found, #" + correctSolutions + " / " + (nonConverging + correctSolutions));
-                        testCase.reinitialize(renderer);
-                        currentGeneration = 0;
-                    }
+                    count++;
 
-                    if(testCase.getGeneration() == settings.getInt("nonConvergingGenCount"))
+                    if(count == (int) Math.min(settings.getInt("updateCountMax"), Math.max((testCase.getAvgFitness()), settings.getInt("updateCountMin"))))
                     {
-                        nonConverging++;
-                        System.out.println("Did not converge, #" + nonConverging + " / " + (nonConverging + correctSolutions));
-                        testCase.reinitialize(renderer);
-                        currentGeneration = 0;
-                    }
+                        testCase.update();
+                        if(currentGeneration != testCase.getGeneration())
+                        {
+                            System.out.println("Generation #" + testCase.getGeneration() + " : " + testCase.getAvgFitness());
+                            currentGeneration = testCase.getGeneration();
+                        }
 
-                    lastChecked = testCase.getGeneration();
-                    count = 0;
+                        if(testCase.getAvgFitness() == Double.POSITIVE_INFINITY)
+                        {
+                            correctSolutions++;
+                            System.out.println("Solution found, #" + correctSolutions + " / " + (nonConverging + correctSolutions));
+                            testCase.reinitialize(renderer);
+                            currentGeneration = 0;
+                        }
+
+                        if(testCase.getGeneration() == settings.getInt("nonConvergingGenCount"))
+                        {
+                            nonConverging++;
+                            System.out.println("Did not converge, #" + nonConverging + " / " + (nonConverging + correctSolutions));
+                            testCase.reinitialize(renderer);
+                            currentGeneration = 0;
+                        }
+
+                        lastChecked = testCase.getGeneration();
+                        count = 0;
+                    }
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Tests terminated: '" + e.getMessage() + "'");
+                    exit();
                 }
             }
         }, 0, settings.getInt("testCaseUpdateTimeBase") * settings.getInt("slowdownFactor"));
@@ -131,7 +139,15 @@ public class SingleThread extends Thread
             @Override
             public void run()
             {
-                renderer.repaint();
+                try
+                {
+                    renderer.repaint();
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Tests terminated: '" + e.getMessage() + "'");
+                    exit();
+                }
             }
         }, 0, settings.getInt("renderUpdateTimeBase") * settings.getInt("slowdownFactor"));
     }
