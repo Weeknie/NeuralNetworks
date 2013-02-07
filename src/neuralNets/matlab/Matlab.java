@@ -42,6 +42,7 @@ public class Matlab
             if(settings.getBool("block") && !(settings.getBool("runBatch") && settings.getBool("runToTarget")))
             {
                 System.out.println("Can not run in block mode, not running batch and/or not running to target");
+                return;
             }
             
             Main.main(false, settings);
